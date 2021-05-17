@@ -10,7 +10,7 @@ A CHIP-8 interpreter written in C++, for learning about computer architecture, b
 
 ## Remaining features to be implemented
 
-#Note - this interpreter is very much still a work in progress. I pushed hard to have it be somewhat functional so I could publish this repository and call it a "project" in good faith, but there is still lots of work to be done!
+# Note - this interpreter is very much still a work in progress. I pushed hard to have it be somewhat functional so I could publish this repository and call it a "project" in good faith, but there is still lots of work to be done!
 
 - More opcodes need to be implemented
 - Both sound and delay timers need to be implemented
