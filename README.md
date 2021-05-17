@@ -19,3 +19,5 @@ A CHIP-8 interpreter written in C++, for learning about computer architecture, b
 - Built in debugger?
 
 # Images
+
+![The extremely impressive first program I ran](https://github.com/mbailey672/C-Eight/blob/main/images/IBM%20Logo.png)
