@@ -49,21 +49,6 @@ int main(int argc, char* args[]) {
 
     playGame();
 
-    /*do {
-        //main loop for event polling.
-        while(SDL_PollEvent(&event) != 0) {
-            SDL_RenderClear(renderer);
-            switch(event.type) {
-            //exits program in event of X press, cmd+Q, etc.
-            case SDL_QUIT:
-                isDone = true;
-                break;
-                //handles keypress events
-            }
-
-        }
-    } while(!isDone);*/
-
     //Destroy window
     SDL_DestroyWindow(window);
 
@@ -93,9 +78,22 @@ void playGame() {
             SDL_RenderPresent(renderer);
             chip8System.pixelsChanged = false;
         }
-
-        //system("pause");
         //userInput here
+        
+    /*do {
+        //main loop for event polling.
+        while(SDL_PollEvent(&event) != 0) {
+            SDL_RenderClear(renderer);
+            switch(event.type) {
+            //exits program in event of X press, cmd+Q, etc.
+            case SDL_QUIT:
+                isDone = true;
+                break;
+                //handles keypress events
+            }
+
+        }
+    } while(!isDone);*/
 
     }
 
