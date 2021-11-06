@@ -35,3 +35,7 @@
 *.cbp
 *.depend
 *.layout
+
+# Build files
+/build
+/.vscode

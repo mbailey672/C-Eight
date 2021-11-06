@@ -24,14 +24,16 @@ const int HEIGHT_SCALE_FACTOR = 16;
 //Global because lazy
 SDL_Window* window = NULL;
 SDL_Renderer* renderer = NULL;
-Chip8 chip8System;
 
 //Function headers
-void playGame();
-void loadROM(std::string romFilename);
-void runCycle();
+void playGame(Chip8 &chip8System);
+void loadROM(Chip8 &chip8System, std::string romFilename);
+void runCycle(Chip8 &chip8System);
 
 int main(int argc, char* args[]) {
+
+    //Initialize CHIP-8 system
+    Chip8 chip8System;
 
     //Initialize SDL
     if(SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -44,10 +46,10 @@ int main(int argc, char* args[]) {
     bool isDone = false; //main control flag
     SDL_Event event; //event stack
 
-    loadROM("IBM Logo.ch8");
+    loadROM(chip8System, "IBM Logo.ch8");
     std::cout << chip8System.ROM[chip8System.PC] << std::endl;
 
-    playGame();
+    playGame(chip8System);
 
     //Destroy window
     SDL_DestroyWindow(window);
@@ -58,11 +60,11 @@ int main(int argc, char* args[]) {
     return 0;
 }
 
-void playGame() {
+void playGame(Chip8 &chip8System) {
     int numTicks = SDL_GetTicks();
     int lastTickCheck = 0;
     while(1) {
-        runCycle();
+        runCycle(chip8System);
         if(chip8System.pixelsChanged) {
             SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xFF);
             SDL_RenderClear(renderer);
@@ -99,7 +101,7 @@ void playGame() {
 
 }
 
-void runCycle() {
+void runCycle(Chip8 &chip8System) {
     //used to address variableRegister by its proper name rather than a decimal representation
     //pretty sure this makes more sense.
     enum {V0, V1, V2, V3, V4, V5, V6, V7, V8, V9, VA, VB, VC, VD, VE, VF};
@@ -148,8 +150,6 @@ void runCycle() {
         int xCoord = VX % 64;
         int yCoord = VY % 32;
 
-        std::cout << xCoord << " " << yCoord << " " << height << std::endl;
-
         for(int i = 0; i < height && (yCoord + i) < 32; i++) {
             uint8_t currentRow = chip8System.ROM[chip8System.I + i];
             for(int j = 0; j < 8 && (xCoord + j) < 64; j++) {
@@ -172,7 +172,7 @@ void runCycle() {
     }
 }
 
-void loadROM(std::string romFilename) {
+void loadROM(Chip8 &chip8System, std::string romFilename) {
     std::ifstream in(romFilename, std::ios::binary);
     for(int i = 0x200; !in.eof(); i++) {
         chip8System.ROM[i] = in.get();

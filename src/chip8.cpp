@@ -1,4 +1,4 @@
-#include "Chip8.h"
+#include "chip8.h"
 
 Chip8::Chip8() {
 
