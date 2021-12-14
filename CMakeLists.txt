@@ -3,24 +3,22 @@ cmake_minimum_required(VERSION 3.10)
 # set the project name
 project(C-Eight)
 
-# set build type
-set(CMAKE_BUILD_TYPE Debug)
-
-# bring headers into project
-include_directories(include)
-
-# get library files
-file(GLOB SOURCES "src/*.cpp")
-
-# find sdl2
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/sdl2)
 find_package(SDL2 REQUIRED)
+include_directories(C-Eight ${SDL2_INCLUDE_DIRS})
+add_subdirectory(Chip8)
+add_subdirectory(stack)
 
 # add the executable
 add_executable(C-Eight main.cpp)
-add_library(supportingClasses ${SOURCES})
 
 # link sdl2
-target_link_libraries(C-Eight SDL2::Main)
-target_link_libraries(C-Eight supportingClasses)
+target_link_libraries(C-Eight PRIVATE ${SDL2_LIBRARIES})
+target_link_libraries(C-Eight PRIVATE Chip8)
+target_link_libraries(C-Eight PRIVATE stack)
+
+target_include_directories(C-Eight PUBLIC
+                           "${PROJECT_BINARY_DIR}"
+                           "${PROJECT_SOURCE_DIR}/Chip8"
+                           "${PROJECT_SOURCE_DIR}/stack"
+)
 
