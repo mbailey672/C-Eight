@@ -7,10 +7,13 @@ A CHIP-8 interpreter written in C++, for learning about computer architecture, b
 - I've written a custom (albiet basic) stack implementation for the SP of the CHIP-8 system. This was far more fun then using `std::stack`!
 - Graphics are currently handled using SDL 2 and it's support for hardware accelerated rendering. Not exactly necessary for a system as basic as this, but alas. In the future, I'm also intending to handle user input and audio using SDL 2 as well.
 - I've written a few macros that are used throughout the program to simplify extracting important data from opcodes. This is pretty different to my other experience with emudev, but it's recommended to do this for the CHIP-8 and has worked fantastically for me.
+- Integer scaling! (judging by how long it took AMD/Nvidia to implement this feature, it would seem to be quite the feat :)
 
 # Remaining features to be implemented
 
 - I've implemented all the necessary pieces for sound, except the code to actually generate sound. I'm not sure which ROMs I can test this with.
+- There's currently no way to load different ROMs without modifying the source. It also will only load ROMs in the same directory as the executable. This is really something I should implement, but I don't need to for my own testing.
+- There are some instructions that have various different implementations, depending on the machine the CHIP-8 interpretter is running on. For example, opcode 8XYE (bitshift 1 left on register X) can operate on completely different values on different computers. If this interpretter was really "complete", I should implement a way to switch the function of these opcodes on the fly.
 - Built in visual debugger?
 
 # Images
