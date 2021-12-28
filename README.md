@@ -10,14 +10,13 @@ A CHIP-8 interpreter written in C++, for learning about computer architecture, b
 
 # Remaining features to be implemented
 
-### Note - this interpreter is very much still a work in progress. I pushed hard to have it be somewhat functional so I could publish this repository and call it a "project" in good faith, but there is still lots of work to be done!
-
-- More opcodes need to be implemented
-- Both sound and delay timers need to be implemented
-- User input needs to be added to the main gameplay loop (currently this is commented out while I bugfix + research the best way to do this)
-- Multi-threading support?
-- Built in debugger?
+- I've implemented all the necessary pieces for sound, except the code to actually generate sound. I'm not sure which ROMs I can test this with.
+- Built in visual debugger?
 
 # Images
 
 ![The extremely impressive first program I ran](https://github.com/mbailey672/C-Eight/blob/main/images/IBM%20Logo.png)
+![Space Invaders!](https://github.com/mbailey672/C-Eight/blob/main/images/space%20invaders.png)
+![Passing BC Test, a ROM designed to ensure correct opcode functionality](https://github.com/mbailey672/C-Eight/blob/main/images/passing%20BC%20test.png)
+![Playing Pong](https://github.com/mbailey672/C-Eight/blob/main/images/pong.png)
+
