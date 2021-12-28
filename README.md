@@ -14,9 +14,12 @@ A CHIP-8 interpreter written in C++, for learning about computer architecture, b
 - Built in visual debugger?
 
 # Images
-
+The extremely impressive first program I ran. This is IBM Logo.ch8:
 ![The extremely impressive first program I ran](https://github.com/mbailey672/C-Eight/blob/main/images/IBM%20Logo.png)
+The title screen for Space Invaders. This version is not quite as cool as the Midways cabinets are:
 ![Space Invaders!](https://github.com/mbailey672/C-Eight/blob/main/images/space%20invaders.png)
+BC_test.ch8 is a test ROM designed by the community that tests each opcode. It spits out errors if there are problems, and says "BON!" if there aren't. Seeing this was very exciting:
 ![Passing BC Test, a ROM designed to ensure correct opcode functionality](https://github.com/mbailey672/C-Eight/blob/main/images/passing%20BC%20test.png)
+Playing a game of Pong:
 ![Playing Pong](https://github.com/mbailey672/C-Eight/blob/main/images/pong.png)
 
