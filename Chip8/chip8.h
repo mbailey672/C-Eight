@@ -1,8 +1,21 @@
 #ifndef REGISTERS_H
 #define REGISTERS_H
 
+//Screen dimension constants. These are for the original CHIP-8. Integer scaled.
+#define SCREEN_WIDTH  64
+#define SCREEN_HEIGHT 32
+
+#define VX variableRegister[((opcode & 0x0F00) >> 8)]
+#define VY variableRegister[((opcode & 0x00F0) >> 4)]
+#define NNN (opcode & 0x0FFF)
+#define NN (opcode & 0x00FF)
+
+//Used for timing. Defined in hz
+#define CLOCKSPEED 200
+
 #include <stack.h>
 #include <stdint.h>
+#include <SDL.h>
 
 class Chip8 {
   public:
@@ -10,16 +23,15 @@ class Chip8 {
     virtual ~Chip8();
 
     uint16_t PC;
-    uint16_t I;
+    uint16_t indexRegister;
     Stack    SP;
     uint8_t  delayTimer;
     uint8_t  soundTimer;
-    uint16_t variableRegister[16];
+    uint8_t  variableRegister[16];
 
 
 
     /*  CHIP-8 includes a font for programs to utilize. This was declared in the interpreter's memory back in the day.
-        I'm going to use a separate, const array instead because it saves me writing out 80 declarations. Laziness is king.
     */
     const unsigned char fontset[80] = {
         0xF0, 0x90, 0x90, 0x90, 0xF0,		// 0
@@ -44,6 +56,9 @@ class Chip8 {
 
     bool pixelsChanged;
     int  pixelBuffer[64][32] {{0}};
+
+    bool isKeyPressed(uint8_t key, const uint8_t *state);
+    void runCycle(const uint8_t *state, SDL_Event event);
 
 
 
